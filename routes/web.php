@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Club;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,10 @@ Route::get('/', function () {
 Route::prefix('club')->group(function () {
     Route::get('/add', function () {
         return view('club.add');
+    });
+   
+ 
+    Route::controller(Club::class)->group(function () { 
+        Route::post('/store', 'store');
     });
 });

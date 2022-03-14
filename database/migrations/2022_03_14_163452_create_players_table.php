@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('club_id');
+            $table->char('name', 255);
+            $table->char('email', 255);
+            $table->integer('contact_number');
+            $table->foreign('club_id')->references('id')->on('clubs');
             $table->timestamps();
         });
     }
