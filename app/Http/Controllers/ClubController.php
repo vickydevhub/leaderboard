@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Club;
 
-class Club extends Controller
+class ClubController extends Controller
 {
     /**
      * Store a new user.
@@ -18,7 +20,11 @@ class Club extends Controller
             'name' => 'required',
         ]);
         $name = $request->name;
- 
+
+        Club::updateOrCreate(['name' => $name],['name' => $name]);
+        return redirect()
+                        ->route('leaderboard')
+                        ->with('message','club created successfully');
          
     }
 }

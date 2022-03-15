@@ -20,7 +20,10 @@ return new class extends Migration
             $table->unsignedBigInteger('second_player');
             $table->char('name', 255);
             $table->char('status', 255)->default('pending')->comment('pending,win,loss,draw');
-            
+            $table->char('first_player_color', 255)->nullable();
+            $table->char('second_player_color', 255)->nullable();
+            $table->integer('first_player_moves')->default(0);
+            $table->integer('second_player_moves')->default(0);
             $table->foreign('second_player')->references('id')->on('players');
             $table->foreign('first_player')->references('id')->on('players');
             $table->foreign('club_id')->references('id')->on('clubs');

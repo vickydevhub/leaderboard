@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Club;
 
 class ClubSeeder extends Seeder
 {
@@ -14,6 +15,10 @@ class ClubSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $array = array('Magnus','KABOOM','Pawns','Chess for Life','Ahoy Mate');
+        foreach($array as $club){
+            Club::updateOrCreate(['name' => $club],['name' => $club]);
+        }
+       
     }
 }

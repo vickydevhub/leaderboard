@@ -9,11 +9,11 @@
 @endsection
  
 @section('content')
-<form action="">
+<form action="{{route('club.store')}}" method="POST">
     @csrf
   <div class="form-group">
     <label for="name">Club Name:</label>
-    <input type="text" class="@error('name') is-invalid @enderror form-control" id="name">
+    <input type="text" class="@error('name') is-invalid @enderror form-control" id="name" name="name">
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
