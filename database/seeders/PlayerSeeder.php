@@ -27,8 +27,15 @@ class PlayerSeeder extends Seeder
                 array('name'=>'yzheng' , 'email' => 'yzheng@yahoo.com' , 'contact_number' => '9876543210'),
                 array('name'=>'caidaperl' , 'email' => 'caidaperl@live.com' , 'contact_number' => '9876543210'),
         );
-        foreach($array as $club){
-            Club::updateOrCreate(['email' => $club],['name' => $club]);
+        $i=1;
+        foreach($players as $player){
+            if($i%5==0){
+                $i=1;
+            }
+            $player['club_id'] = $i;
+            Player::updateOrCreate(['email' => $player['email']],$player );
+            $i++;
+
         }
     }
 }

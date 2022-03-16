@@ -17,9 +17,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>First Player</th> 
-        <th>Second Player</th> 
-        <th>Club</th>
+        
         <th>Status</th>
         <th>Action</th>
       </tr>
@@ -28,9 +26,7 @@
     @forelse ($games as $game)
     <tr>
         <td>{{$game->name}}</td> 
-        <td>{{$game->firstPlayer->name}}</td>
-        <td>{{$game->secondPlayer->name}}</td>
-        <td>{{$game->club->name}}</td>
+       
         <td>{{ ucfirst($game->status)}}</td> 
         <td><a href="{{route('game.read',['id' => $game->id])}}">View</a></td>
       </tr>

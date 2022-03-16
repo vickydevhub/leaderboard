@@ -13,7 +13,7 @@ class Game extends Model
      *
      * @var array
      */
-    protected $fillable = ['club_id','name','first_player','second_player','status'];
+    protected $fillable = ['club_id','name', 'status','player_won','player_loss'  ];
 
      /**
      * Get the club associated with the player.
@@ -23,18 +23,22 @@ class Game extends Model
         return $this->hasOne(club::class,'id','club_id');
     }
 
-     /**
-     * Get the first Player associated with the game.
+    /**
+     * Get the club associated with the player.
      */
-    public function firstPlayer()
+    public function players()
     {
-        return $this->hasOne(Player::class,'id','second_player');
+        return $this->hasMany(GamePlayer::class,'id','game_id');
     }
+
+     
     /**
      * Get the second Player associated with the game.
      */
-    public function secondPlayer()
+    public function playerWon()
     {
-        return $this->hasOne(Player::class,'id','first_player');
+        return $this->hasOne(Player::class,'id','player_won');
     }
+
+     
 }

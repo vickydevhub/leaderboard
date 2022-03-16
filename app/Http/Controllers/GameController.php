@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Game;
+use App\Models\Game, App\Models\Club, App\Models\Player;
 
 class GameController extends Controller
 {
+    /****Create player***/
+    public function create(){
+        $clubs = Club::all();
+        $players = Player::all(); 
+
+        return view('game.add')->with(compact('clubs','players'));
+    }
     /**
      * Store a new Game.
      *
@@ -29,5 +36,11 @@ class GameController extends Controller
                         ->route('game.list')
                         ->with('message','Game created successfully');
          
+    }
+
+    /****list all players***/
+    public function listing(){
+        $games = Game::paginate(); 
+        return view('game.list')->with(compact('games'));
     }
 }

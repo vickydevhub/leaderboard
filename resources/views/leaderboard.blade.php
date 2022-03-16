@@ -13,7 +13,7 @@ Body
 }
 
 body {
-  min-height: 450px;
+  min-height: 950px;
   height: 100vh;
   margin: 0;
   background: -webkit-radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%);
@@ -32,7 +32,7 @@ Leaderboard
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 285px;
-  height: 308px;
+  height: 608px;
   background: -webkit-linear-gradient(top, #3a404d, #181c26);
   background: linear-gradient(to bottom, #3a404d, #181c26);
   border-radius: 10px;
@@ -210,26 +210,16 @@ Leaderboard
     Most active Players
   </h1>
   <ol>
+    @forelse ($games as $game)
     <li>
-      <mark>Jerry Wood</mark>
-      <small>315</small>
+      <mark>{{$game->playerWon->name}}</mark>
+      <small>{{$game->matches_won}}</small>
     </li>
-    <li>
-      <mark>Brandon Barnes</mark>
-      <small>301</small>
-    </li>
-    <li>
-      <mark>Raymond Knight</mark>
-      <small>292</small>
-    </li>
-    <li>
-      <mark>Trevor McCormick</mark>
-      <small>245</small>
-    </li>
-    <li>
-      <mark>Andrew Fox</mark>
-      <small>203</small>
-    </li>
+    @empty
+        <li>No game played</li>
+    @endforelse
+    
+    
   </ol>
 </div>
 @endsection

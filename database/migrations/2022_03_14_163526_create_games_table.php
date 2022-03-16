@@ -15,18 +15,17 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('club_id');
-            $table->unsignedBigInteger('first_player');
-            $table->unsignedBigInteger('second_player');
+           
+           
+            $table->unsignedBigInteger('player_won');
+            $table->unsignedBigInteger('player_loss');
             $table->char('name', 255);
             $table->char('status', 255)->default('pending')->comment('pending,win,loss,draw');
-            $table->char('first_player_color', 255)->nullable();
-            $table->char('second_player_color', 255)->nullable();
-            $table->integer('first_player_moves')->default(0);
-            $table->integer('second_player_moves')->default(0);
-            $table->foreign('second_player')->references('id')->on('players');
-            $table->foreign('first_player')->references('id')->on('players');
-            $table->foreign('club_id')->references('id')->on('clubs');
+           
+            $table->foreign('player_loss')->references('id')->on('players');
+            $table->foreign('player_won')->references('id')->on('players');
+           
+           
             $table->timestamps();
         });
     }

@@ -27,4 +27,9 @@ class ClubController extends Controller
                         ->with('message','club created successfully');
          
     }
+    /**list all clubs***/
+    public function listing(){
+        $clubs = Club::paginate();
+        return view('club.list')->with(compact('clubs'));
+    }
 }

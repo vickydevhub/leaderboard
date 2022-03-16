@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use DB;
 
 class Player extends Model
 {
@@ -23,4 +24,23 @@ class Player extends Model
     {
         return $this->hasOne(club::class,'id','club_id');
     }
+
+     /**
+     * Get the games won.
+     */
+    public function won()
+    {
+        return $this->hasMany(Game::class,'player_won','id');
+    }
+    /**
+     * Get the games losses.
+     */
+    public function loss()
+    {
+        return $this->hasMany(Game::class,'player_loss','id');
+    }
+
+     
+
+    
 }
